@@ -22,6 +22,7 @@ ax = prsa.plot(
     kind='bar', 
     title='Sales by Product Line')
 
+# Allowing plot to show the exact number on top of a particular patch i.e (a bar)
 for i in ax.patches:
     ax.text(i.get_x() + i.get_width() / 2, i.get_height() + 0.5, str(int(i.get_height())), ha='center', va='bottom')
 
@@ -31,6 +32,7 @@ coqu = df.groupby('COUNTRY')['QUANTITYORDERED'].sum()
 coqu.plot(
     kind='pie',
     title='Quantity ordered by Country',
+    # Showing percent with a float
     autopct='%1.1f%%',
     textprops={'fontsize': 6.5})
 plt.ylabel('')  # This removes the 'QUANTITYORDERED' label on the y-axis
@@ -58,7 +60,7 @@ dequ.plot(
     title = 'Deal Size of the Quantity Ordered')
 plt.show()
 
-
+# Time analysis, extracting years from the df.column(ORDERDATE)
 df['YEAR'] = df['ORDERDATE'].dt.year
 yequ = df.groupby('YEAR')['QUANTITYORDERED'].sum().sort_values(ascending=False)
 yequ.plot(
